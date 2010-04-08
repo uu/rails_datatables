@@ -13,6 +13,7 @@ module ActionView
       auto_width = opts[:auto_width].present? ? opts[:auto_width].to_s : "true"
       row_callback = opts[:row_callback] || nil
       jqueryui = opts.key?(:jqueryui) ? opts[:jqueryui].to_s : "false"
+      paginate = opts[:paginate].present? ? opts[:pagintate].to_s : "true"
 
       append = opts[:append] || nil
 
@@ -34,6 +35,7 @@ module ActionView
                   #{"'sZeroRecords': '#{no_records_message}'," if no_records_message}
                   "sProcessing": '#{processing}'
               },
+              "bPaginate": #{paginate},
               "sPaginationType": "full_numbers",
               "iDisplayLength": #{per_page},
               "bJQueryUI": #{jqueryui},

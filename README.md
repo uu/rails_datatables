@@ -56,6 +56,7 @@ Activate using <%= datatable() %>, passing in the columns, how to filter them (s
     :no_records_message - Message to display if no records are found, whether on load or after searching
     :auto_width - Automatically adjust the width of the columns. Defaults to true.
     :row_callback - a function to run on each row in the table. Inserted in to "'fnRowCallback': function( nRow, aData, iDisplayIndex ) {  }". See [documentation for fnRowCallback](http://www.datatables.net/usage/callbacks) for more information.
+    :pagination - boolean, turn pagination on or off.  Defaults to true.
     
 #### Column Options
 
