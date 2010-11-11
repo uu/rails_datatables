@@ -2,20 +2,20 @@ module RailsDatatables
   def datatable(columns, opts={})
     sort_by = opts[:sort_by] || nil
     additional_data = opts[:additional_data] || {}
-    search = opts[:search].present? ? opts[:search].to_s : "true"
+    search = opts.has_key?(:search) ? opts[:search].to_s : "true"
     search_label = opts[:search_label] || "Search"
     processing = opts[:processing] || "Processing"
-    persist_state = opts[:persist_state].present? ? opts[:persist_state].to_s : "true"
+    persist_state = opts.has_key?(:persist_state) ? opts[:persist_state].to_s : "true"
     table_dom_id = opts[:table_dom_id] ? "##{opts[:table_dom_id]}" : ".datatable"
     per_page = opts[:per_page] || opts[:display_length]|| 25
     no_records_message = opts[:no_records_message] || nil
-    auto_width = opts[:auto_width].present? ? opts[:auto_width].to_s : "true"
+    auto_width = opts.has_key?(:auto_width) ? opts[:auto_width].to_s : "true"
     row_callback = opts[:row_callback] || nil
 
     append = opts[:append] || nil
 
     ajax_source = opts[:ajax_source] || nil
-    server_side = opts[:ajax_source].present?
+    server_side = opts.has_key?(:ajax_source)
     jquery_ui = opts[:jquery_ui] || nil
     dom = opts[:dom] || nil
     
@@ -70,8 +70,8 @@ module RailsDatatables
         if c.nil? or c.empty?
           "null"
         else
-          searchable = c[:searchable].to_s.present? ? c[:searchable].to_s : "true"
-          sortable = c[:sortable].to_s.present? ? c[:sortable].to_s : "true"
+          searchable = c.has_key?(:searchable) ? c[:searchable].to_s : "true"
+          sortable = c.has_key?(:sortable) ? c[:sortable].to_s : "true"
           "{
           'sType': '#{c[:type] || "string"}',
           'bSortable':#{sortable},
