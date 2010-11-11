@@ -11,6 +11,8 @@ module RailsDatatables
     no_records_message = opts[:no_records_message] || nil
     auto_width = opts.has_key?(:auto_width) ? opts[:auto_width].to_s : "true"
     row_callback = opts[:row_callback] || nil
+    infinite_scrolling = opts[:infinite_scrolling] || nil
+    infinite_scrolling_margin = opts[:infinite_scrolling_margin] || '200px'
 
     append = opts[:append] || nil
 
@@ -42,6 +44,9 @@ module RailsDatatables
           "bStateSave": #{persist_state},
           "bFilter": #{search},
           "bAutoWidth": #{auto_width},
+          #{"'bScrollInfinite': '#{infinite_scrolling}'," if infinite_scrolling}
+          #{"'bScrollCollapse': true," if infinite_scrolling}
+          #{"'sScrollY': '#{infinite_scrolling_margin}'," if infinite_scrolling}
           #{"'sDom': '#{dom}'," if dom}
           #{"'aaSorting': [#{sort_by}]," if sort_by}
           #{"'sAjaxSource': '#{ajax_source}'," if ajax_source}
