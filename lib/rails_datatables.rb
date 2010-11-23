@@ -4,7 +4,7 @@ module RailsDatatables
     additional_data = opts[:additional_data] || {}
     search = opts.has_key?(:search) ? opts[:search].to_s : "true"
     search_label = opts[:search_label] || "Search"
-    processing = opts[:processing] || "Processing"
+    processing = opts[:processing] || image_tag('throbber.gif')
     persist_state = opts.has_key?(:persist_state) ? opts[:persist_state].to_s : "true"
     table_dom_id = opts[:table_dom_id] ? "##{opts[:table_dom_id]}" : ".datatable"
     per_page = opts[:per_page] || opts[:display_length]|| 25
@@ -30,7 +30,11 @@ module RailsDatatables
     %Q{
     <script type="text/javascript">
     jQuery(document).ready(function () {
-        jQuery('#{table_dom_id}').dataTable({
+       if ( !window.Datatables ) {
+        window.DatatableStore = {}
+       } 
+
+        DatatableStore['#{table_dom_id.gsub('#','')}'] = jQuery('#{table_dom_id}').dataTable({
           "oLanguage": {
             "sSearch": "#{search_label}",
             #{"'sZeroRecords': '#{no_records_message}'," if no_records_message}
@@ -85,6 +89,7 @@ module RailsDatatables
           #{"'bVisible':'#{c[:visible]}'," if c[:visible]}
           #{"'iDataSort':#{c[:datasort]}," if c[:datasort]}
           #{"'sClass':'#{c[:class]}'" if c[:class]}
+          #{"'sWidth':'#{c[:width]}'" if c[:width]}
           }"
         end
       }.join(",")
