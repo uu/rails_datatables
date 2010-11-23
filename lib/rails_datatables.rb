@@ -91,8 +91,9 @@ module RailsDatatables
           #{"'asSorting':#{c[:sorting].inspect}," if c[:sorting]}
           #{"'bVisible':'#{c[:visible]}'," if c[:visible]}
           #{"'iDataSort':#{c[:datasort]}," if c[:datasort]}
-          #{"'sClass':'#{c[:class]}'" if c[:class]}
-          #{"'sWidth':'#{c[:width]}'" if c[:width]}
+          #{"'sClass':'#{c[:class]}'," if c[:class]}
+          #{"'sWidth':'#{c[:width]}'," if c[:width]}
+          #{"'sName':'#{c[:name]}'" if c[:name]}
           }"
         end
       }.join(",")
