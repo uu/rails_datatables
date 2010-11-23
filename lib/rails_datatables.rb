@@ -30,7 +30,7 @@ module RailsDatatables
     %Q{
     <script type="text/javascript">
     jQuery(document).ready(function () {
-       if ( !window.Datatables ) {
+       if ( !window.DatatableStore ) {
         window.DatatableStore = {}
        } 
 
