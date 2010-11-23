@@ -13,6 +13,7 @@ module RailsDatatables
     row_callback = opts[:row_callback] || nil
     infinite_scrolling = opts[:infinite_scrolling] || nil
     infinite_scrolling_margin = opts[:infinite_scrolling_margin] || '200px'
+    column_search = opts[:column_search] || nil
 
     append = opts[:append] || nil
 
@@ -48,6 +49,7 @@ module RailsDatatables
           "bStateSave": #{persist_state},
           "bFilter": #{search},
           "bAutoWidth": #{auto_width},
+          #{"'aoSearchCols': #{column_search.to_json}" if column_search},
           #{"'bScrollInfinite': '#{infinite_scrolling}'," if infinite_scrolling}
           #{"'bScrollCollapse': true," if infinite_scrolling}
           #{"'sScrollY': '#{infinite_scrolling_margin}'," if infinite_scrolling}
@@ -67,6 +69,7 @@ module RailsDatatables
           }
         })#{append};
     });
+
     </script>
     }
   end
