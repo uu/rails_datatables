@@ -136,3 +136,4 @@ There is a more functionality offered by DataTables than this plugin currently p
 ### Credits
 
 Copyright (c) 2009 [Phronos](http://phronos.com), released under the MIT license
+Copyright (c) 2011 Jon Bringhurst <jon@bringhurst.org>, released under the MIT license

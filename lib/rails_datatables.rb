@@ -27,31 +27,33 @@ module RailsDatatables
     <script type="text/javascript">
     $(function() {
         $('#{table_dom_id}').dataTable({
-          "oLanguage": {
-            "sSearch": "#{search_label}",
-            #{"'sZeroRecords': '#{no_records_message}'," if no_records_message}
-            "sProcessing": '#{processing}'
-          },
-          "sPaginationType": "full_numbers",
-          "iDisplayLength": #{per_page},
-          "bProcessing": true,
-          "bServerSide": #{server_side},
-          "bLengthChange": false,
-          "bStateSave": #{persist_state},
-          "bFilter": #{search},
-          "bAutoWidth": #{auto_width},
-          #{"'aaSorting': [#{sort_by}]," if sort_by}
-          #{"'sAjaxSource': '#{ajax_source}'," if ajax_source}
-          "aoColumns": [
-      			#{formatted_columns(columns)}
-      				],
-      		#{"'fnRowCallback': function( nRow, aData, iDisplayIndex ) { #{row_callback} }," if row_callback}
-          "fnServerData": function ( sSource, aoData, fnCallback ) {
-            aoData.push( #{additional_data_string} );
-            $.getJSON( sSource, aoData, function (json) {
-      				fnCallback(json);
-      			} );
-          }
+            "oLanguage": {
+                "sSearch": "#{search_label}",
+                #{"'sZeroRecords': '#{no_records_message}'," if no_records_message}
+                "sProcessing": '#{processing}'
+            },
+            "sPaginationType": "full_numbers",
+            "iDisplayLength": #{per_page},
+            "bProcessing": true,
+            "bServerSide": #{server_side},
+            "bLengthChange": false,
+            "bStateSave": #{persist_state},
+            "bFilter": #{search},
+            "bAutoWidth": #{auto_width},
+            #{"'aaSorting': [#{sort_by}]," if sort_by}
+            #{"'sAjaxSource': '#{ajax_source}'," if ajax_source}
+            "aoColumns": [
+                #{formatted_columns(columns)}
+            ],
+            #{"'fnRowCallback': function( nRow, aData, iDisplayIndex ) {
+                #{row_callback}
+            }," if row_callback}
+            "fnServerData": function ( sSource, aoData, fnCallback ) {
+                aoData.push( #{additional_data_string} );
+                $.getJSON( sSource, aoData, function (json) {
+                    fnCallback(json);
+                });
+            }
         })#{append};
     });
     </script>
