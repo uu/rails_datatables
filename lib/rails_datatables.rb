@@ -62,7 +62,7 @@ module ActionView
           })#{append};
       });
       </script>
-      }
+      }.html_safe
     end
 
     private
