@@ -14,7 +14,7 @@ module ActionView
       row_callback = opts[:row_callback] || nil
       jqueryui = opts.key?(:jqueryui) ? opts[:jqueryui].to_s : "false"
       paginate = opts[:paginate].present? ? opts[:pagintate].to_s : "true"
-      sdom = opts[:sdom] || opts[:sdom].to_s
+      sdom = opts[:sdom] || ""
 
       append = opts[:append] || nil
 
@@ -46,7 +46,7 @@ module ActionView
               "bStateSave": #{persist_state},
               "bFilter": #{search},
               "bAutoWidth": #{auto_width},
-              "sDom": #{sdom},
+              "sDom": '#{sdom}',
               #{"'aaSorting': [#{sort_by}]," if sort_by}
               #{"'sAjaxSource': '#{ajax_source}'," if ajax_source}
               "aoColumns": [
