@@ -15,6 +15,7 @@ module ActionView
       jqueryui = opts.key?(:jqueryui) ? opts[:jqueryui].to_s : "false"
       paginate = opts[:paginate].present? ? opts[:pagintate].to_s : "true"
       sdom = opts[:sdom] || ""
+      surl = opts[:surl] || nil
 
       append = opts[:append] || nil
 
@@ -33,6 +34,7 @@ module ActionView
           $('#{table_dom_id}').dataTable({
               "oLanguage": {
                   "sSearch": "#{search_label}",
+                  #{"'sUrl': '#{surl}'," if surl}
                   #{"'sZeroRecords': '#{no_records_message}'," if no_records_message}
                   "sProcessing": '#{processing}'
               },
