@@ -37,7 +37,7 @@ module ActionView
                   "sSearch": "#{search_label}",
                   #{"'sUrl': '#{surl}'," if surl}
                   #{"'sZeroRecords': '#{no_records_message}'," if no_records_message}
-                  "sProcessing": '#{processing}'
+                  "sProcessing": 'Processing'
               },
               "bPaginate": #{paginate},
               "sPaginationType": "full_numbers",
