@@ -6,6 +6,7 @@ module ActionView
       search = opts[:search].present? ? opts[:search].to_s : "true"
       search_label = opts[:search_label] || "Search"
       processing = opts[:processing] || "Processing"
+      use_processing = opts[:use_processing].present? ? opts[:use_processing].to_s : "true"
       persist_state = opts[:persist_state].present? ? opts[:persist_state].to_s : "true"
       table_dom_id = opts[:table_dom_id] ? "##{opts[:table_dom_id]}" : ".datatable"
       per_page = opts[:per_page] || opts[:display_length]|| 25
@@ -42,7 +43,7 @@ module ActionView
               "sPaginationType": "full_numbers",
               "iDisplayLength": #{per_page},
               "bJQueryUI": #{jqueryui},
-              "bProcessing": true,
+              "bProcessing": #{use_processing},
               "bServerSide": #{server_side},
               "bLengthChange": false,
               "bStateSave": #{persist_state},
