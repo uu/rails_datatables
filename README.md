@@ -57,6 +57,7 @@ Activate using <%= datatable() %>, passing in the columns, how to filter them (s
     :auto_width - Automatically adjust the width of the columns. Defaults to true.
     :row_callback - a function to run on each row in the table. Inserted in to "'fnRowCallback': function( nRow, aData, iDisplayIndex ) {  }". See [documentation for fnRowCallback](http://www.datatables.net/usage/callbacks) for more information.
     :pagination - boolean, turn pagination on or off.  Defaults to true.
+    :destroy - boolean, reinitializes the table. Defaults to false.
     
 #### Column Options
 

@@ -17,6 +17,7 @@ module ActionView
       paginate = opts[:paginate].present? ? opts[:pagintate].to_s : "true"
       sdom = opts[:sdom] || ""
       surl = opts[:surl] || nil
+      destroy = opts[:destroy].present? ? opts[:destroy].to_s : "false"
 
       append = opts[:append] || nil
 
@@ -39,6 +40,7 @@ module ActionView
                   #{"'sZeroRecords': '#{no_records_message}'," if no_records_message}
                   "sProcessing": '#{processing}'
               },
+              "bDestroy": #{destroy},
               "bPaginate": #{paginate},
               "sPaginationType": "full_numbers",
               "iDisplayLength": #{per_page},
