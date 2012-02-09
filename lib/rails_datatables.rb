@@ -15,14 +15,13 @@ module ActionView
       row_callback = opts[:row_callback] || nil
       jqueryui = opts.key?(:jqueryui) ? opts[:jqueryui].to_s : "false"
       paginate = opts[:paginate].present? ? opts[:pagintate].to_s : "true"
-      sdom = opts[:sdom] || ""
       surl = opts[:surl] || nil
       destroy = opts[:destroy].present? ? opts[:destroy].to_s : "false"
-
       append = opts[:append] || nil
-
       ajax_source = opts[:ajax_source] || nil
       server_side = opts[:ajax_source].present?
+      jquery_ui = opts[:jquery_ui] || nil
+      dom = opts[:dom] || nil
 
       additional_data_string = ""
       additional_data.each_pair do |name,value|
@@ -32,8 +31,8 @@ module ActionView
 
       %Q{
       <script type="text/javascript">
-      $(function() {
-          $('#{table_dom_id}').dataTable({
+      jQuery(document).ready(function () {
+          jQuery('#{table_dom_id}').dataTable({
               "oLanguage": {
                   "sSearch": "#{search_label}",
                   #{"'sUrl': '#{surl}'," if surl}
@@ -51,9 +50,10 @@ module ActionView
               "bStateSave": #{persist_state},
               "bFilter": #{search},
               "bAutoWidth": #{auto_width},
-              "sDom": '#{sdom}',
+              #{"'sDom': '#{dom}'," if dom}
               #{"'aaSorting': [#{sort_by}]," if sort_by}
               #{"'sAjaxSource': '#{ajax_source}'," if ajax_source}
+              #{"'bJQueryUI': #{jquery_ui}," if jquery_ui}
               "aoColumns": [
                   #{formatted_columns(columns)}
               ],
@@ -62,7 +62,7 @@ module ActionView
               }," if row_callback}
               "fnServerData": function ( sSource, aoData, fnCallback ) {
                   aoData.push( #{additional_data_string} );
-                  $.getJSON( sSource, aoData, function (json) {
+                  jQuery.getJSON( sSource, aoData, function (json) {
                       fnCallback(json);
                   });
               }
@@ -85,17 +85,17 @@ module ActionView
             sortable = c[:sortable].to_s.present? ? c[:sortable].to_s : "true"
 
             "{
-                'sType': '#{c[:type] || "string"}',
-                'bSortable':#{sortable},
-                'bSearchable':#{searchable}
-                #{",'sClass':'#{c[:class]}'" if c[:class]}
+            'sType': '#{c[:type] || "string"}',
+            'bSortable':#{sortable},
+            'bSearchable':#{searchable},
+            #{"'asSorting':#{c[:sorting].inspect}," if c[:sorting]}
+            #{"'bVisible':'#{c[:visible]}'," if c[:visible]}
+            #{"'iDataSort':#{c[:datasort]}," if c[:datasort]}
+            #{"'sClass':'#{c[:class]}'" if c[:class]}
             }"
-
           end
         }.join(",")
       end
-
-  end
 end
 
 # EOF
