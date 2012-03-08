@@ -96,6 +96,7 @@ module ActionView
           end
         }.join(",")
       end
+  end      
 end
 
 # EOF
