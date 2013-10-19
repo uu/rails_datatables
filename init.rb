@@ -1,1 +1,1 @@
-#ActionView::Base.send :include, RailsDatatables
+require 'rails_datatables'
