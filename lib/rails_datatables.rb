@@ -178,4 +178,3 @@ module ActionView
         }.join(",")
       end
   end      
-end
